@@ -1,0 +1,29 @@
+name: Release
+run-name: ${{ github.actor }} is releasing the project 🚀
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'The tag to create a release for (e.g., v1.0.0)'
+        required: true
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Publish Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
