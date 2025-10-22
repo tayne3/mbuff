@@ -2,15 +2,15 @@
 
 **English** | [中文](README_zh.md)
 
-A high-performance buffer library for efficient binary data processing in Go. MBuff provides a simple yet powerful API for reading and writing binary data with support for different byte orders and custom byte swapping.
+一个用于 Go 语言高效二进制数据处理的高性能缓冲区库。MBuff 提供了简单而强大的 API，用于读写二进制数据，支持不同的字节序和自定义字节交换。
 
-## Installation
+## 安装
 
 ```bash
 go get github.com/tayne3/mbuff
 ```
 
-## Quick Start
+## 快速开始
 
 ```go
 package main
