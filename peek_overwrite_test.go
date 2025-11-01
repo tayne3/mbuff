@@ -8,7 +8,7 @@ import (
 
 // TestPeek tests peeking scalar values without advancing position.
 func TestPeek(t *testing.T) {
-	m := NewMBuff(make([]byte, 16))
+	m := New(16)
 	m.PutU8(0x01)
 	m.PutU8(0x02)
 	m.PutU32(0x12345678)
@@ -24,7 +24,7 @@ func TestPeek(t *testing.T) {
 
 // TestOverwrite tests overwriting values at specific offsets.
 func TestOverwrite(t *testing.T) {
-	m := NewMBuff(make([]byte, 16))
+	m := New(16)
 	m.PutU32(0xAAAAAAAA)
 	m.PutU32(0xBBBBBBBB)
 
@@ -45,7 +45,7 @@ func TestOverwrite(t *testing.T) {
 
 // TestPeekArr tests array peek operations.
 func TestPeekArr(t *testing.T) {
-	m := NewMBuff(make([]byte, 64))
+	m := New(64)
 	m.PutU8(0xFF)
 	m.PutU32(0x11223344)
 	m.PutU32(0x55667788)
@@ -65,7 +65,7 @@ func TestPeekArr(t *testing.T) {
 
 // TestOverwriteArr tests array overwrite operations.
 func TestOverwriteArr(t *testing.T) {
-	m := NewMBuff(make([]byte, 64))
+	m := New(64)
 	m.PutArr32([]uint32{0xAAAAAAAA, 0xBBBBBBBB, 0xCCCCCCCC})
 
 	// Overwrite at absolute offset

@@ -8,7 +8,7 @@ import (
 
 // TestHLSwap tests high-low byte swap for 32-bit and 64-bit values.
 func TestHLSwap(t *testing.T) {
-	m := NewMBuff(make([]byte, 16))
+	m := New(16)
 	m.SetHLSwap(true)
 
 	// PutU32 with HLSwap: 0xAABBCCDD -> 0xBBAADDCC

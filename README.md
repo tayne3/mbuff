@@ -22,9 +22,8 @@ import (
 )
 
 func main() {
-    // Create a buffer with 1024 bytes
-    buf := make([]byte, 1024)
-    m := mbuff.NewMBuff(buf)
+    // Create a buffer with initial capacity
+    m := mbuff.New(1024)
     
     // Write data
     m.PutU8(0x01)

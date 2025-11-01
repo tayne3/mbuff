@@ -11,8 +11,8 @@ import (
 
 // mustHaveReadable checks if the current position and length are within the count.
 func (m *MBuff) mustHaveReadable(n int) {
-	if m.pos+n > m.count {
-		panic(fmt.Errorf("mbuff: read of %d bytes at pos %d exceeds count %d", n, m.pos, m.count))
+	if m.pos+n > len(m.data) {
+		panic(fmt.Errorf("mbuff: read of %d bytes at pos %d exceeds count %d", n, m.pos, len(m.data)))
 	}
 }
 

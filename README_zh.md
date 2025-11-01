@@ -22,20 +22,19 @@ import (
 )
 
 func main() {
-    // Create a buffer with 1024 bytes
-    buf := make([]byte, 1024)
-    m := mbuff.NewMBuff(buf)
-    
-    // Write data
+    // 创建指定初始容量的缓冲区
+    m := mbuff.New(1024)
+
+    // 写入数据
     m.PutU8(0x01)
     m.PutU16(0x1234)
     m.PutU32(0x12345678)
     m.PutU64(0x123456789ABCDEF0)
     
-    // Rewind to read from the beginning
+    // 重置到开头以读取数据
     m.Rewind()
     
-    // Read data
+    // 读取数据
     v1 := m.TakeU8()    // 0x01
     v2 := m.TakeU16()   // 0x1234
     v3 := m.TakeU32()   // 0x12345678

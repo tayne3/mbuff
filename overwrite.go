@@ -11,8 +11,8 @@ import (
 
 // mustHaveOverwritable checks if the offset and length are within the count.
 func (m *MBuff) mustHaveOverwritable(offset int, n int) {
-	if offset < 0 || offset+n > m.count {
-		panic(fmt.Errorf("mbuff: overwrite at offset %d exceeds count %d", offset, m.count))
+	if offset < 0 || offset+n > len(m.data) {
+		panic(fmt.Errorf("mbuff: overwrite at offset %d exceeds count %d", offset, len(m.data)))
 	}
 }
 

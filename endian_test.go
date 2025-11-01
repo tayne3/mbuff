@@ -8,7 +8,7 @@ import (
 
 // TestEndian tests byte order handling.
 func TestEndian(t *testing.T) {
-	m := NewMBuff(make([]byte, 8))
+	m := New(8)
 
 	// Big Endian (default)
 	m.PutU32(0x12345678)

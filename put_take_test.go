@@ -8,7 +8,7 @@ import (
 
 // TestPutTake tests writing and reading scalar values.
 func TestPutTake(t *testing.T) {
-	m := NewMBuff(make([]byte, 64))
+	m := New(0)
 
 	// Put various scalar types
 	m.PutU8(0x01)
@@ -46,7 +46,7 @@ func TestPutTake(t *testing.T) {
 
 // TestPutTakeArr tests array read/write operations.
 func TestPutTakeArr(t *testing.T) {
-	m := NewMBuff(make([]byte, 64))
+	m := New(0)
 
 	// Arr8
 	arr8 := []byte{1, 2, 3, 4}

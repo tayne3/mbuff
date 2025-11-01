@@ -12,8 +12,8 @@ import (
 // mustHavePeekable checks if the offset and length are within the count.
 func (m *MBuff) mustHavePeekable(offset int, n int) int {
 	absPos := m.pos + offset
-	if absPos < 0 || absPos+n > m.count {
-		panic(fmt.Errorf("mbuff: peek at pos %d + offset %d exceeds count %d", m.pos, offset, m.count))
+	if absPos < 0 || absPos+n > len(m.data) {
+		panic(fmt.Errorf("mbuff: peek at pos %d + offset %d exceeds count %d", m.pos, offset, len(m.data)))
 	}
 	return absPos
 }
