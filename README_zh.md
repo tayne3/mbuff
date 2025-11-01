@@ -1,6 +1,6 @@
 # MBuff
 
-**English** | [中文](README_zh.md)
+[English](README.md) | **中文**
 
 一个用于 Go 语言高效二进制数据处理的高性能缓冲区库。MBuff 提供了简单而强大的 API，用于读写二进制数据，支持不同的字节序和自定义字节交换。
 
