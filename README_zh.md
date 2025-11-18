@@ -23,22 +23,22 @@ import (
 
 func main() {
     // 创建指定初始容量的缓冲区
-    m := mbuff.New(1024)
+    b := mbuff.NewBuffer(1024)
 
     // 写入数据
-    m.PutU8(0x01)
-    m.PutU16(0x1234)
-    m.PutU32(0x12345678)
-    m.PutU64(0x123456789ABCDEF0)
+    b.PutU8(0x01)
+    b.PutU16(0x1234)
+    b.PutU32(0x12345678)
+    b.PutU64(0x123456789ABCDEF0)
     
     // 重置到开头以读取数据
-    m.Rewind()
+    b.Rewind()
     
     // 读取数据
-    v1 := m.TakeU8()    // 0x01
-    v2 := m.TakeU16()   // 0x1234
-    v3 := m.TakeU32()   // 0x12345678
-    v4 := m.TakeU64()   // 0x123456789ABCDEF0
+    v1 := b.TakeU8()    // 0x01
+    v2 := b.TakeU16()   // 0x1234
+    v3 := b.TakeU32()   // 0x12345678
+    v4 := b.TakeU64()   // 0x123456789ABCDEF0
     
     fmt.Printf("Values: %x, %x, %x, %x\n", v1, v2, v3, v4)
 }
