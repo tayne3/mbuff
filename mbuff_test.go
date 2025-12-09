@@ -332,9 +332,9 @@ func TestWrite(t *testing.T) {
 	// Write with overflow
 	b.Seek(8)
 	n, err = b.Write(writeData) // writeData is 5 bytes, only 2 writable
-	assert.Error(t, err)
-	assert.Equal(t, 0, n)
-	assert.Equal(t, 8, b.Pos()) // Position should not change on error
+	assert.Equal(t, io.ErrShortWrite, err)
+	assert.Equal(t, 2, n)        // Should write 2 bytes (partial write)
+	assert.Equal(t, 10, b.Pos()) // Position should advance to 10
 }
 
 // TestFill tests the Fill method of the Buffer.

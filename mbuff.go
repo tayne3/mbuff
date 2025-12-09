@@ -330,6 +330,9 @@ func (b *Buffer) Write(p []byte) (n int, err error) {
 		n = writable
 		err = io.ErrShortWrite
 	}
+	if b.pos+n > len(b.data) {
+		b.data = b.data[:b.pos+n]
+	}
 	copy(b.data[b.pos:b.pos+n], p[:n])
 	b.pos += n
 	return
