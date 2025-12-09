@@ -7,7 +7,6 @@ package mbuff
 
 import (
 	"encoding/binary"
-	"errors"
 	"fmt"
 	"io"
 )
@@ -276,11 +275,11 @@ func (b *Buffer) Fill(bt byte, length int) int {
 	}
 
 	writable := b.Writable()
+	if writable == 0 {
+		return 0
+	}
 	if length > writable {
 		length = writable
-	}
-	if length == 0 {
-		return 0
 	}
 	if b.pos+length > len(b.data) {
 		b.data = b.data[:b.pos+length]
@@ -326,16 +325,12 @@ func (b *Buffer) Write(p []byte) (n int, err error) {
 	}
 
 	writable := b.Writable()
-	if len(p) > writable {
-		err = errors.New("mbuff.Buffer.Write: buffer overflow")
-		return
+	n = len(p)
+	if n > writable {
+		n = writable
+		err = io.ErrShortWrite
 	}
-
-	if b.pos+len(p) > len(b.data) {
-		b.data = b.data[:b.pos+len(p)]
-	}
-
-	n = copy(b.data[b.pos:], p)
+	copy(b.data[b.pos:b.pos+n], p[:n])
 	b.pos += n
 	return
 }
